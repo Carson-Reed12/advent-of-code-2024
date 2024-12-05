@@ -64,9 +64,6 @@ for report in reports:
         safe_count += 1
     else:
         unsafe_count += 1
-    
-
-    # blah=input()
 
 print("PART 1")
 print(f"SAFE COUNT: {safe_count}")
@@ -99,8 +96,6 @@ for report in reports:
             safe_count += 1
         else:
             unsafe_count += 1
-
-    # blah=input()
 
 print("PART 2")
 print(f"SAFE COUNT: {safe_count}")
