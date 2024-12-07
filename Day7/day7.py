@@ -13,23 +13,16 @@ for result in evaluation.keys():
     vals = evaluation[result]
     num_ops = len(vals) - 1
 
-    for x in map(''.join, itertools.product('01', repeat=num_ops)):
-        count = 0
+    for op_order in map(''.join, itertools.product('01', repeat=num_ops)):
+        count = int(vals[0])
         
         for i in range(len(vals) - 1):
-            num1 = int(vals[i])
-            num2 = int(vals[i+1])
+            num = int(vals[i+1])
 
-            if i == 0:
-                if int(x[i]) == 0:
-                    count += num1+num2
-                else:
-                    count += num1*num2
+            if int(op_order[i]) == 0:
+                count += num
             else:
-                if int(x[i]) == 0:
-                    count += num2
-                else:
-                    count *= num2
+                count *= num
 
         if count == int(result):
             total_count += int(result)
@@ -43,27 +36,18 @@ for result in evaluation.keys():
     vals = evaluation[result]
     num_ops = len(vals) - 1
 
-    for x in map(''.join, itertools.product('012', repeat=num_ops)):
-        count = 0
+    for op_order in map(''.join, itertools.product('012', repeat=num_ops)):
+        count = int(vals[0])
         
         for i in range(len(vals) - 1):
-            num1 = int(vals[i])
-            num2 = int(vals[i+1])
+            num = int(vals[i+1])
 
-            if i == 0:
-                if int(x[i]) == 0:
-                    count += num1+num2
-                elif int(x[i]) == 1:
-                    count += num1*num2
-                else:
-                    count = int(str(num1) + (str(num2)))
+            if int(op_order[i]) == 0:
+                count += num
+            elif int(op_order[i]) == 1:
+                count *= num
             else:
-                if int(x[i]) == 0:
-                    count += num2
-                elif int(x[i]) == 1:
-                    count *= num2
-                else:
-                    count = int(str(count) + str(num2))
+                count = int(str(count) + str(num))
 
         if count == int(result):
             total_count += int(result)
