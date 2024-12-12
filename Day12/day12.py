@@ -71,23 +71,21 @@ def get_perimeter_pt2(region):
     for direction in "RLUD":
         used_walls = []
         if direction == "R" or direction == "L":
-            offset1 = directions["U"]
-            offset2 = directions["D"]
+            offset = directions["U"]
         else:
-            offset1 = directions["L"]
-            offset2 = directions["R"]
+            offset = directions["L"]
 
         for wall in walls[direction]:
             if wall not in used_walls:
                 used_walls.append(wall)
-                new_wall = [wall[0] + offset1[0], wall[1] + offset1[1]]  
+                new_wall = [wall[0] + offset[0], wall[1] + offset[1]]  
                 while new_wall in walls[direction]:
                     used_walls.append(new_wall)
-                    new_wall = [new_wall[0] + offset1[0], new_wall[1] + offset1[1]]
-                new_wall = [wall[0] + offset2[0], wall[1] + offset2[1]]   
+                    new_wall = [new_wall[0] + offset[0], new_wall[1] + offset[1]]
+                new_wall = [wall[0] + (offset[0] * -1), wall[1] + (offset[1] * -1)]   
                 while new_wall in walls[direction]:
                     used_walls.append(new_wall)
-                    new_wall = [new_wall[0] + offset2[0], new_wall[1] + offset2[1]]
+                    new_wall = [new_wall[0] + (offset[0] * -1), new_wall[1] + (offset[1] * -1)]
                 score += 1      
 
     return score
